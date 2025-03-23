@@ -1,29 +1,37 @@
+# Defining services in the Docker Compose setup
 services:
+  
+  # PostgreSQL service configuration
   postgres:
-    container_name: postgres-sql-bsn
-    image: postgres
+    container_name: postgres-sql-bsn  # Name of the container for PostgreSQL.
+    image: postgres  # Specifies the official PostgreSQL image from Docker Hub.
     environment:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
-      PGDATA: /var/lib/postgresql/data
-      POSTGRES_DB: book_social_network
+      POSTGRES_USER: username  # The username to access the PostgreSQL database.
+      POSTGRES_PASSWORD: password  # The password for the PostgreSQL user.
+      PGDATA: /var/lib/postgresql/data  # Directory inside the container where PostgreSQL stores its data.
+      POSTGRES_DB: book_social_network  # The name of the PostgreSQL database to be created.
     volumes:
-      - postgres:/data/postgres
+      - postgres:/data/postgres  # Mounts the 'postgres' volume to store persistent data for PostgreSQL.
     ports:
-      - 5432:5432
+      - 5432:5432  # Exposes PostgreSQL on port 5432 (default port for PostgreSQL).
     networks:
-      - spring-demo
-    restart: unless-stopped
+      - spring-demo  # Connects the PostgreSQL container to the 'spring-demo' network.
+    restart: unless-stopped  # Ensures the PostgreSQL container restarts unless explicitly stopped.
+  
+  # MailDev service configuration (for local email development/testing)
   mail-dev:
-    container_name: mail-dev-bsn
-    image: maildev/maildev
+    container_name: mail-dev-bsn  # Name of the container for MailDev.
+    image: maildev/maildev  # The MailDev image from Docker Hub for local email testing.
     ports:
-      - 1080:1080
-      - 1025:1025
+      - 1080:1080  # Exposes MailDev's web UI on port 1080 for email viewing.
+      - 1025:1025  # Exposes MailDev's SMTP server on port 1025 for sending emails.
+      
+# Networks definition (for connecting containers)
 networks:
   spring-demo:
-    driver: bridge
+    driver: bridge  # Uses the 'bridge' network driver, which is the default for Docker containers.
 
+# Volumes definition (for persistent data storage)
 volumes:
   postgres:
-    driver: local
+    driver: local  # Specifies that the volume for PostgreSQL data uses the local driver.

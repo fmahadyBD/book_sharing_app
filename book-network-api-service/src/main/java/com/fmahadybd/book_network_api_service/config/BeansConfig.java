@@ -13,29 +13,59 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Configuration class for defining Spring Beans related to security and auditing.
+ */
 @Configuration
 @RequiredArgsConstructor
 public class BeansConfig {
+
+    // Injecting the UserDetailsService to be used in authentication
     private final UserDetailsService userDetailsService;
-    
+
+    /**
+     * Defines a bean for AuthenticationProvider using DaoAuthenticationProvider.
+     * This provider retrieves user details from the UserDetailsService and verifies passwords.
+     *
+     * @return Configured AuthenticationProvider
+     */
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
+        authProvider.setUserDetailsService(userDetailsService); // Setting user details service
+        authProvider.setPasswordEncoder(passwordEncoder()); // Setting password encoder
         return authProvider;
     }
-    
+
+    /**
+     * Defines a bean for AuthenticationManager, which manages authentication operations.
+     *
+     * @param config AuthenticationConfiguration instance provided by Spring Security
+     * @return Configured AuthenticationManager
+     * @throws Exception if an error occurs during configuration
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
-    
+
+    /**
+     * Defines a bean for password encoding using BCrypt hashing algorithm.
+     * This ensures that passwords are securely stored.
+     *
+     * @return PasswordEncoder instance using BCrypt
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-    
+
+    /**
+     * Defines a bean for auditing the current authenticated user.
+     * This is used for tracking created/modified entities in JPA.
+     *
+     * @return AuditorAware<Integer> implementation
+     */
     @Bean
     public AuditorAware<Integer> auditorAware() {
         return new ApplicationAuditAware();

@@ -17,41 +17,39 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@EnableMethodSecurity(securedEnabled = true)
+@EnableMethodSecurity(securedEnabled = true)  // Enables method-level security (e.g., @Secured, @PreAuthorize)
 public class SecurityConfig {
 
-    private final JwtFilter jwtAuthFilter;
-    private final AuthenticationProvider authenticationProvider;
+    private final JwtFilter jwtAuthFilter;  // Custom JWT filter to intercept and validate tokens
+    private final AuthenticationProvider authenticationProvider;  // Authentication provider to validate user credentials
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .cors(withDefaults())
-                .csrf(AbstractHttpConfigurer::disable)
+                .cors(withDefaults())  // Enables CORS with default settings
+                .csrf(AbstractHttpConfigurer::disable)  // Disables CSRF protection (since you're using stateless JWT authentication)
                 .authorizeHttpRequests(req ->
                         req.requestMatchers(
-                                        "/auth/**",
-                                        "/v2/api-docs",
-                                        "/v3/api-docs",
-                                        "/v3/api-docs/**",
-                                        "/swagger-resources",
-                                        "/swagger-resources/**",
-                                        "/configuration/ui",
-                                        "/configuration/security",
-                                        "/swagger-ui/**",
-                                        "/webjars/**",
-                                        "/swagger-ui.html"
+                                        "/auth/**",  // Allow unauthenticated access to authentication endpoints
+                                        "/v2/api-docs",  // Swagger docs endpoints
+                                        "/v3/api-docs",  // Swagger docs endpoints
+                                        "/v3/api-docs/**",  // Swagger docs endpoints
+                                        "/swagger-resources",  // Swagger resources
+                                        "/swagger-resources/**",  // Swagger resources
+                                        "/configuration/ui",  // Swagger UI configuration
+                                        "/configuration/security",  // Swagger security configuration
+                                        "/swagger-ui/**",  // Swagger UI
+                                        "/webjars/**",  // WebJars for Swagger UI
+                                        "/swagger-ui.html"  // Swagger UI HTML
                                 )
-                                    .permitAll()
-                                .anyRequest()
-                                    .authenticated()
+                                    .permitAll()  // Allows anyone to access these endpoints without authentication
+                                .anyRequest()  // Any other request requires authentication
+                                    .authenticated()  // User must be authenticated
                 )
-                .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))  // Configures the session to be stateless (no session state on the server)
+                .authenticationProvider(authenticationProvider)  // Uses the custom AuthenticationProvider for user authentication
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);  // Adds the custom JWT filter before the UsernamePasswordAuthenticationFilter
 
-        return http.build();
+        return http.build();  // Returns the security filter chain configuration
     }
-
-    
 }
