@@ -1,10 +1,22 @@
+# Active profile configuration
 spring:
-    profiles:
-        active: dev
-    servlet:
-        max-file-size: 50MB
+  profiles:
+    active: dev  # This sets the active profile to 'dev'. Based on this, Spring will load the appropriate configuration from application-dev.yml (if it exists).
+
+# File upload configuration
+  servlet:
+    multipart:
+      max-file-size: 50MB  # Sets the maximum file size for file uploads via multipart requests to 50MB.
+      # Optional: You can also configure 'max-request-size' if the total size of the entire request (including multiple file parts) needs to be set.
+      # max-request-size: 50MB
+
+# Springdoc (Swagger) configuration for API documentation
 springdoc:
-    default-produces-media-type: application/json
+  default-produces-media-type: application/json  # Specifies the default media type for responses in Swagger (API documentation) to 'application/json'.
+  # This is useful for generating Swagger documentation that assumes your API responses are in JSON format.
+
+# Server configuration
 server:
-    servlet:
-        context-path: /api/v1/
+  servlet:
+    context-path: /api/v1/  # Sets the context path of your application to '/api/v1/'. 
+                             # All API endpoints will be prefixed with '/api/v1/', making it easier to manage versioning of your APIs (e.g., '/api/v1/users', '/api/v1/products').
