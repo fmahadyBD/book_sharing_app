@@ -24,11 +24,9 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * AuthenticationService handles user registration, authentication, and account activation.
- */
-@Service // Marks this class as a Spring Service (a business logic component).
-@RequiredArgsConstructor // Generates a constructor with required arguments (final fields).
+
+@Service 
+@RequiredArgsConstructor 
 public class AuthenticationService {
 
     private final UserRepository userRepository;
@@ -39,16 +37,11 @@ public class AuthenticationService {
     private final EmailService emailService;
     private final TokenRepository tokenRepository;
 
-    // Reads the activation URL from the application properties
+
     @Value("${application.mailing.frontend.activation-url}")
     private String activationUrl;
 
-    /**
-     * Registers a new user, assigns a role, saves them in the database, and sends an activation email.
-     * 
-     * @param request The registration request containing user details.
-     * @throws MessagingException If an error occurs while sending the activation email.
-     */
+
     public void register(RegistrationRequest request) throws MessagingException {
         var userRole = roleRepository.findByName("USER")
                
@@ -58,22 +51,16 @@ public class AuthenticationService {
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
                 .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword())) // Encrypts password before saving
+                .password(passwordEncoder.encode(request.getPassword())) 
                 .accountLocked(false)
                 .enabled(false) // Account remains disabled until activation
                 .roles(List.of(userRole))
                 .build();
 
         userRepository.save(user);
-        sendValidationEmail(user); // Sends an activation email to the user
+        sendValidationEmail(user); 
     }
 
-    /**
-     * Authenticates a user by verifying credentials and generating a JWT token.
-     * 
-     * @param request The authentication request containing email and password.
-     * @return AuthenticationResponse containing the generated JWT token.
-     */
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         var auth = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -90,12 +77,7 @@ public class AuthenticationService {
                 .build();
     }
 
-    /**
-     * Activates a user account using a provided token.
-     * 
-     * @param token The activation token received via email.
-     * @throws MessagingException If an error occurs while resending a validation email.
-     */
+
     @Transactional // Ensures the activation process runs as a single transaction.
     public void activateAccount(String token) throws MessagingException {
         Token savedToken = tokenRepository.findByToken(token)
@@ -119,12 +101,6 @@ public class AuthenticationService {
         tokenRepository.save(savedToken);
     }
 
-    /**
-     * Generates and stores an activation token for a given user.
-     * 
-     * @param user The user for whom the activation token is generated.
-     * @return The generated activation token.
-     */
     private String generateAndSaveActivationToken(User user) {
         // Generates a random 6-digit activation code
         String generatedToken = generateActivationCode(6);
@@ -140,12 +116,7 @@ public class AuthenticationService {
         return generatedToken;
     }
 
-    /**
-     * Sends an activation email with a generated token.
-     * 
-     * @param user The user to whom the email is sent.
-     * @throws MessagingException If an error occurs while sending the email.
-     */
+
     private void sendValidationEmail(User user) throws MessagingException {
         var newToken = generateAndSaveActivationToken(user); // Generates a new token
 
@@ -158,12 +129,7 @@ public class AuthenticationService {
                 "Account activation"); // Sends email with activation instructions
     }
 
-    /**
-     * Generates a random numeric activation code of the specified length.
-     * 
-     * @param length The length of the activation code.
-     * @return The generated activation code.
-     */
+
     private String generateActivationCode(int length) {
         String characters = "0123456789";
         StringBuilder codeBuilder = new StringBuilder();
