@@ -22,10 +22,9 @@ import com.fmahadybd.book_network_api_service.common.BaseEntity;
 public class Feedback extends BaseEntity {
 
     @Column
-    private Integer note;
+    private Double note;
     private String comment;
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
-    
 }

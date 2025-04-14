@@ -2,6 +2,7 @@ package com.fmahadybd.book_network_api_service.book;
 
 import org.springframework.stereotype.Service;
 
+import com.fmahadybd.book_network_api_service.file.FileUtils;
 import com.fmahadybd.book_network_api_service.hostory.BookTransactionHistory;
 
 @Service
@@ -22,20 +23,18 @@ public class BookMapper {
         return BookResponse.builder()
                 .id(book.getId())
                 .title(book.getTitle())
-                .isbn(book.getIsbn())
                 .authorName(book.getAuthorName())
+                .isbn(book.getIsbn())
                 .synopsis(book.getSynopsis())
-                .owner(book.getOwner().getUsername())
-
-                // TO-DO the cover is not yet implemented
-                // .cover(book.getCover())
                 .rate(book.getRate())
                 .archived(book.isArchived())
                 .shareable(book.isShareable())
+                .owner(book.getOwner().fullName())
+                .cover(FileUtils.readFileFromLocation(book.getBookCover()))
                 .build();
     }
 
-     public BorrowedBookResponse toBorrowedBookResponse(BookTransactionHistory history) {
+    public BorrowedBookResponse toBorrowedBookResponse(BookTransactionHistory history) {
         return BorrowedBookResponse.builder()
                 .id(history.getBook().getId())
                 .title(history.getBook().getTitle())
@@ -46,6 +45,4 @@ public class BookMapper {
                 .returnApproved(history.isReturnApproved())
                 .build();
     }
-
-
 }
