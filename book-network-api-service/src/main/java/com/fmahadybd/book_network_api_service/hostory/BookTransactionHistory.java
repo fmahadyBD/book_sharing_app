@@ -2,8 +2,9 @@ package com.fmahadybd.book_network_api_service.hostory;
 
 import com.fmahadybd.book_network_api_service.book.Book;
 import com.fmahadybd.book_network_api_service.common.BaseEntity;
+import com.fmahadybd.book_network_api_service.user.User;
 
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -22,8 +23,8 @@ import lombok.experimental.SuperBuilder;
 public class BookTransactionHistory extends BaseEntity{
 
     @ManyToOne
-     @Column(name = "user_id")
-    private String userId;
+    @JoinColumn(name = "user_id")
+    private User user;
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
