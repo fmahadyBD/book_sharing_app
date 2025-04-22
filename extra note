@@ -1,0 +1,4 @@
+create new angular project:
+1. ng new app name
+2. select scss
+3. install bootstrap 
