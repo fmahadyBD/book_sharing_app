@@ -6,16 +6,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
-public interface BookRepository extends JpaRepository<Book, Integer> ,JpaSpecificationExecutor<Book>{
-
+public interface BookRepository extends JpaRepository<Book, Integer>, JpaSpecificationExecutor<Book> {
 
     @Query("""
             SELECT book
-            FROM BOOk book
+            FROM Book book
             WHERE book.archived = false
             AND book.shareable = true
             AND book.createdBy != :userId
             """)
-    Page<Book> findAllDisplayableBooks(Pageable pageable, String name);
+    Page<Book> findAllDisplayableBooks(Pageable pageable,
+            @org.springframework.data.repository.query.Param("userId") String userId);
 
 }

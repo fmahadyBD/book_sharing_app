@@ -2,3 +2,16 @@ create new angular project:
 1. ng new app name
 2. select scss
 3. install bootstrap 
+
+
+How run the spring boot:
+1. docker compose up -d
+
+
+Angular:
+we need to openapi can help us create for server
+
+we need api specification:
+
+problem is on version:
+spring 
