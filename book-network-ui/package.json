@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:book-network-ui": "node dist/book-network-ui/server/server.mjs"
+    "serve:ssr:book-network-ui": "node dist/book-network-ui/server/server.mjs",
+    "api-gen": "ng-openapi-gen --input ./src/openapi/openapi.json --output ./src/app/services"
+
   },
   "private": true,
   "dependencies": {
@@ -24,6 +26,7 @@
     "@fortawesome/fontawesome-free": "^6.7.2",
     "bootstrap": "^5.3.5",
     "express": "^4.18.2",
+    "ng-openapi-gen": "^0.53.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

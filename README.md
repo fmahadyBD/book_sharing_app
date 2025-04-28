@@ -17,3 +17,7 @@ Book Social Network is a full-stack application that enables users to manage the
 
 #### Spring security diagram
 ![Security diagram](Diagram/security.png)
+
+
+### FInd the openapi:
+http://localhost:8088/api/v1/swagger-ui/index.html
