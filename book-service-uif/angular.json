@@ -3,11 +3,18 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "book-network-ui": {
+    "book-service-uif": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "standalone": false
+        },
+        "@schematics/angular:directive": {
+          "standalone": false
+        },
+        "@schematics/angular:pipe": {
+          "standalone": false
         }
       },
       "root": "",
@@ -17,7 +24,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/book-network-ui",
+            "outputPath": "dist/book-service-uif",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "book-network-ui:build:production"
+              "buildTarget": "book-service-uif:build:production"
             },
             "development": {
-              "buildTarget": "book-network-ui:build:development"
+              "buildTarget": "book-service-uif:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -103,8 +110,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": "15e6f724-262a-4ef4-8e31-d026651b04a7"
   }
 }

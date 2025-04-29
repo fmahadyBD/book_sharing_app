@@ -34,3 +34,6 @@ if we change anything then copy and follow same process
 
 now run:
 npm run api-gen
+--------------------------
+
+Now God to the app Module and import the HtttpClientModule HtttpClient
