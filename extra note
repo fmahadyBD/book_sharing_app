@@ -8,7 +8,12 @@ How run the spring boot:
 1. docker compose up -d
 
 
+
 Angular:
+install bootstrap
+instal fontawsame:
+npm install @fortawesome/fontawesome-free
+
 we need to openapi can help us create for server
 
 we need api specification:
