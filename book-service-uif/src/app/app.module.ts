@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';  // <-- Change this
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ActivateAccountComponent } from './pages/activate-account/activate-account.component';
+import {CodeInputModule} from 'angular-code-input';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { RegisterComponent } from './pages/register/register.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule  // <-- Add this to imports array
+    HttpClientModule,
+    CodeInputModule 
   ],
   providers: [
     provideClientHydration(withEventReplay())

@@ -47,3 +47,5 @@ Now God to the app Module and import the HtttpClientModule HtttpClient
 -------------------------
 
 Install npm install @auth0/angular-jwt for token service
+
+Install npm i angular-code-input
