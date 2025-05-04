@@ -10,6 +10,7 @@ import { ActivateAccountComponent } from './pages/activate-account/activate-acco
 import {CodeInputModule} from 'angular-code-input';
 import { MenuComponent } from './modules/component/menu/menu.component';
 import { MainComponent } from './modules/pages/main/main.component';
+import { BookListComponent } from './modules/pages/book-list/book-list.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MainComponent } from './modules/pages/main/main.component';
     LoginComponent,
     RegisterComponent,
     MenuComponent,
-    MainComponent
+    MainComponent,
+    BookListComponent
   ],
   imports: [
     BrowserModule,
