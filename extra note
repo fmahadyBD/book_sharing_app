@@ -49,3 +49,21 @@ Now God to the app Module and import the HtttpClientModule HtttpClient
 Install npm install @auth0/angular-jwt for token service
 
 Install npm i angular-code-input
+
+
+
+## Now create module:
+
+- for lezy loading we need Module
+
+- How to create module
+    ng g m book --routing
+
+- Now create routing for the module
+
+- Now pages. main 
+
+
+## Now create the interceptor:
+- create folder for interceptor  in servvice class so that i can implement it:
+ng g interceptor http-token
