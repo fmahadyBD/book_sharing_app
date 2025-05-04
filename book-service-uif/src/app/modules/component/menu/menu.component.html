@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/">BSN</a>
+  
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/book">
+              <i class="fas fa-home"></i>&nbsp; Home
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/my-books">
+              <i class="fas fa-book"></i>&nbsp; Books
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/my-waiting-list">
+              <i class="fas fa-heart"></i>&nbsp; My waiting list
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/my-returned-books">
+              <i class="fas fa-undo"></i>&nbsp; My returned books
+            </a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/my-borrowed-book">
+              <i class="fas fa-book-reader"></i>&nbsp; Borrowed
+            </a>
+          </li>
+        </ul>
+  
+        <form class="d-flex gap-2 align-items-center" role="search">
+          <input type="text" class="form-control" placeholder="Find a book" aria-label="Search">
+          <button class="btn btn-outline-secondary" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+          <span>Welcome</span>
+          <span class="text-capitalize fw-bold">Fahim</span>
+          <button class="btn btn-link" type="button" (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  
