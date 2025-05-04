@@ -62,3 +62,8 @@ Install npm i angular-code-input
 - Now create routing for the module
 
 - Now pages. main 
+
+
+## Now create the interceptor:
+- create folder for interceptor  in servvice class so that i can implement it:
+ng g interceptor http-token
