@@ -12,6 +12,8 @@ import { MenuComponent } from './modules/component/menu/menu.component';
 import { MainComponent } from './modules/pages/main/main.component';
 import { BookListComponent } from './modules/pages/book-list/book-list.component';
 import { httpTokenInterceptor } from './services/interceptor/http-token.interceptor';
+import { BookCardComponent } from './modules/component/book-card/book-card.component';
+import { RattingComponent } from './modules/component/ratting/ratting.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { httpTokenInterceptor } from './services/interceptor/http-token.intercep
     RegisterComponent,
     MenuComponent,
     MainComponent,
-    BookListComponent
+    BookListComponent,
+    BookCardComponent,
+    RattingComponent
   ],
   imports: [
     BrowserModule,

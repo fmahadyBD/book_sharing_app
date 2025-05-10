@@ -2,6 +2,6 @@
 
 <hr>
 <div class="d-flex justs gap-2  flex-wrap">
-    <span *ngFor="let book of bookResponse.content">{{book.title}}</span>
+    <app-book-card [book]="book" *ngFor="let book of bookResponse.content">{{book.title}}</app-book-card>
     
 </div>
