@@ -21,3 +21,8 @@ Book Social Network is a full-stack application that enables users to manage the
 
 ### FInd the openapi:
 http://localhost:8088/api/v1/swagger-ui/index.html
+
+
+
+## After clone the repository goto the ui:
+- npm install -g @angular/cli

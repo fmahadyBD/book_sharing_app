@@ -1,19 +1,19 @@
+import { HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http'; // <-- Change this
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { CodeInputModule } from 'angular-code-input';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withInterceptors } from '@angular/common/http';  // <-- Change this
+import { BookCardComponent } from './modules/book/component/book-card/book-card.component';
+import { MenuComponent } from './modules/book/component/menu/menu.component';
+import { RattingComponent } from './modules/book/component/ratting/ratting.component';
+
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { ActivateAccountComponent } from './pages/activate-account/activate-account.component';
-import {CodeInputModule} from 'angular-code-input';
-import { MenuComponent } from './modules/component/menu/menu.component';
-import { MainComponent } from './modules/pages/main/main.component';
-import { BookListComponent } from './modules/pages/book-list/book-list.component';
 import { httpTokenInterceptor } from './services/interceptor/http-token.interceptor';
-import { BookCardComponent } from './modules/component/book-card/book-card.component';
-import { RattingComponent } from './modules/component/ratting/ratting.component';
+import { BookListComponent } from './modules/book/pages/book-list/book-list.component';
+import { MainComponent } from './modules/book/pages/main/main.component';
 
 @NgModule({
   declarations: [
