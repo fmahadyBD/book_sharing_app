@@ -36,6 +36,7 @@ export class BookListComponent implements OnInit {
     })
       .subscribe({
         next: (books) => {
+          console.log("books",books);
           this.bookResponse = books;
           this.pages = Array(this.bookResponse.totalPages)
             .fill(0)

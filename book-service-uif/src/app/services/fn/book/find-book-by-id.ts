@@ -8,13 +8,14 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { BookResponse } from '../../models/book-response';
 
-export interface UpdateShareableStatus$Params {
+export interface FindBookById$Params {
   'book-id': number;
 }
 
-export function updateShareableStatus(http: HttpClient, rootUrl: string, params: UpdateShareableStatus$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
-  const rb = new RequestBuilder(rootUrl, updateShareableStatus.PATH, 'patch');
+export function findBookById(http: HttpClient, rootUrl: string, params: FindBookById$Params, context?: HttpContext): Observable<StrictHttpResponse<BookResponse>> {
+  const rb = new RequestBuilder(rootUrl, findBookById.PATH, 'get');
   if (params) {
     rb.path('book-id', params['book-id'], {});
   }
@@ -24,9 +25,9 @@ export function updateShareableStatus(http: HttpClient, rootUrl: string, params:
   ).pipe(
     filter((r: any): r is HttpResponse<any> => r instanceof HttpResponse),
     map((r: HttpResponse<any>) => {
-      return (r as HttpResponse<any>).clone({ body: parseFloat(String((r as HttpResponse<any>).body)) }) as StrictHttpResponse<number>;
+      return r as StrictHttpResponse<BookResponse>;
     })
   );
 }
 
-updateShareableStatus.PATH = '/books/shareable/{book-id}';
+findBookById.PATH = '/books/{book-id}';

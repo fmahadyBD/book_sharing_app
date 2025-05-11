@@ -13,17 +13,25 @@ import { StrictHttpResponse } from '../strict-http-response';
 
 import { approveReturnBorrowBook } from '../fn/book/approve-return-borrow-book';
 import { ApproveReturnBorrowBook$Params } from '../fn/book/approve-return-borrow-book';
+import { BookResponse } from '../models/book-response';
 import { borrowBook } from '../fn/book/borrow-book';
 import { BorrowBook$Params } from '../fn/book/borrow-book';
 import { findAllBooks } from '../fn/book/find-all-books';
 import { FindAllBooks$Params } from '../fn/book/find-all-books';
 import { findAllBooksByOwner } from '../fn/book/find-all-books-by-owner';
 import { FindAllBooksByOwner$Params } from '../fn/book/find-all-books-by-owner';
+import { findAllBorrowedBooks } from '../fn/book/find-all-borrowed-books';
+import { FindAllBorrowedBooks$Params } from '../fn/book/find-all-borrowed-books';
+import { findAllReturnedBooks } from '../fn/book/find-all-returned-books';
+import { FindAllReturnedBooks$Params } from '../fn/book/find-all-returned-books';
+import { findBookById } from '../fn/book/find-book-by-id';
+import { FindBookById$Params } from '../fn/book/find-book-by-id';
 import { PageResponseBookResponse } from '../models/page-response-book-response';
+import { PageResponseBorrowedBookResponse } from '../models/page-response-borrowed-book-response';
 import { returnBorrowBook } from '../fn/book/return-borrow-book';
 import { ReturnBorrowBook$Params } from '../fn/book/return-borrow-book';
-import { save } from '../fn/book/save';
-import { Save$Params } from '../fn/book/save';
+import { saveBook } from '../fn/book/save-book';
+import { SaveBook$Params } from '../fn/book/save-book';
 import { updateArchivedStatus } from '../fn/book/update-archived-status';
 import { UpdateArchivedStatus$Params } from '../fn/book/update-archived-status';
 import { updateShareableStatus } from '../fn/book/update-shareable-status';
@@ -62,27 +70,27 @@ export class BookService extends BaseService {
     );
   }
 
-  /** Path part for operation `save()` */
-  static readonly SavePath = '/books';
+  /** Path part for operation `saveBook()` */
+  static readonly SaveBookPath = '/books';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `save()` instead.
+   * To access only the response body, use `saveBook()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  save$Response(params: Save$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
-    return save(this.http, this.rootUrl, params, context);
+  saveBook$Response(params: SaveBook$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return saveBook(this.http, this.rootUrl, params, context);
   }
 
   /**
    * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `save$Response()` instead.
+   * To access the full response (for headers, for example), `saveBook$Response()` instead.
    *
    * This method sends `application/json` and handles request body of type `application/json`.
    */
-  save(params: Save$Params, context?: HttpContext): Observable<number> {
-    return this.save$Response(params, context).pipe(
+  saveBook(params: SaveBook$Params, context?: HttpContext): Observable<number> {
+    return this.saveBook$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
     );
   }
@@ -241,6 +249,56 @@ export class BookService extends BaseService {
     );
   }
 
+  /** Path part for operation `findBookById()` */
+  static readonly FindBookByIdPath = '/books/{book-id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findBookById()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findBookById$Response(params: FindBookById$Params, context?: HttpContext): Observable<StrictHttpResponse<BookResponse>> {
+    return findBookById(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findBookById$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findBookById(params: FindBookById$Params, context?: HttpContext): Observable<BookResponse> {
+    return this.findBookById$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BookResponse>): BookResponse => r.body)
+    );
+  }
+
+  /** Path part for operation `findAllReturnedBooks()` */
+  static readonly FindAllReturnedBooksPath = '/books/returned';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAllReturnedBooks()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllReturnedBooks$Response(params?: FindAllReturnedBooks$Params, context?: HttpContext): Observable<StrictHttpResponse<PageResponseBorrowedBookResponse>> {
+    return findAllReturnedBooks(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAllReturnedBooks$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllReturnedBooks(params?: FindAllReturnedBooks$Params, context?: HttpContext): Observable<PageResponseBorrowedBookResponse> {
+    return this.findAllReturnedBooks$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PageResponseBorrowedBookResponse>): PageResponseBorrowedBookResponse => r.body)
+    );
+  }
+
   /** Path part for operation `findAllBooksByOwner()` */
   static readonly FindAllBooksByOwnerPath = '/books/owner';
 
@@ -263,6 +321,31 @@ export class BookService extends BaseService {
   findAllBooksByOwner(params?: FindAllBooksByOwner$Params, context?: HttpContext): Observable<PageResponseBookResponse> {
     return this.findAllBooksByOwner$Response(params, context).pipe(
       map((r: StrictHttpResponse<PageResponseBookResponse>): PageResponseBookResponse => r.body)
+    );
+  }
+
+  /** Path part for operation `findAllBorrowedBooks()` */
+  static readonly FindAllBorrowedBooksPath = '/books/borrowed';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findAllBorrowedBooks()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllBorrowedBooks$Response(params?: FindAllBorrowedBooks$Params, context?: HttpContext): Observable<StrictHttpResponse<PageResponseBorrowedBookResponse>> {
+    return findAllBorrowedBooks(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findAllBorrowedBooks$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findAllBorrowedBooks(params?: FindAllBorrowedBooks$Params, context?: HttpContext): Observable<PageResponseBorrowedBookResponse> {
+    return this.findAllBorrowedBooks$Response(params, context).pipe(
+      map((r: StrictHttpResponse<PageResponseBorrowedBookResponse>): PageResponseBorrowedBookResponse => r.body)
     );
   }
 

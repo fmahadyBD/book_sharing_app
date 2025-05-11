@@ -8,6 +8,8 @@ import { MenuComponent } from './component/menu/menu.component';
 import { RattingComponent } from './component/ratting/ratting.component';
 import { MainComponent } from './pages/main/main.component';
 import { BookListComponent } from './pages/book-list/book-list.component';
+import { ManageBookComponent } from './pages/manage-book/manage-book.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,12 +19,15 @@ import { BookListComponent } from './pages/book-list/book-list.component';
     MainComponent,
     BookCardComponent,
     RattingComponent,
-    BookListComponent
+    BookListComponent,
+    ManageBookComponent,
+    
     
   ],
   imports: [
     CommonModule,
     BookRoutingModule,
+    FormsModule
   ]
 })
 export class BookModule { }
