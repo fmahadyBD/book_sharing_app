@@ -97,6 +97,7 @@ public class BeansConfig {
                 "POST",
                 "DELETE",
                 "PUT",
+                "OPTIONS",
                 "PATCH"));
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);

@@ -67,3 +67,21 @@ Install npm i angular-code-input
 ## Now create the interceptor:
 - create folder for interceptor  in servvice class so that i can implement it:
 ng g interceptor http-token
+
+
+## Add the card for the book:
+    Create new componenet inside the component folder.
+    Then edit the book-list-component
+    Update the code of boo-card
+
+    goto the refector and the addingt the getter and the setter:
+
+    this is the input:
+     <app-book-card [book]="book" *ngFor="let book of bookResponse.content">{{book.title}}</app-book-card>
+        @Input()
+        public set book(value: BookResponse) {
+            this._book = value;
+        }
+
+
+    # Create the rating component. and make it

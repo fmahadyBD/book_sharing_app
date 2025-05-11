@@ -38,7 +38,7 @@ spring:
 application:
   security:
     jwt:
-      secret-key: 638CBE3A90E0303BF3808F40F95A7F02A24B4B5D029C954CF553F79E9EF1DC0384BE681C249F1223F6B55AA21DC070914834CA22C8DD98E14A872CA010091ACC  # Secret key used to sign JWT tokens.
+      secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
       expiration: 86400000  # JWT expiration time (in milliseconds). Here it's set to 1 day (24 hours).
       refresh-token:
         expiration: 604800000  # Refresh token expiration time (in milliseconds). Set to 7 days.
