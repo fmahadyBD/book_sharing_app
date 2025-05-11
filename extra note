@@ -84,3 +84,4 @@ ng g interceptor http-token
         }
 
 
+    # Create the rating component. and make it
