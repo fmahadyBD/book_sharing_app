@@ -10,6 +10,8 @@ import { MainComponent } from './pages/main/main.component';
 import { BookListComponent } from './pages/book-list/book-list.component';
 import { ManageBookComponent } from './pages/manage-book/manage-book.component';
 import { FormsModule } from '@angular/forms';
+import { BorrowedBookListComponent } from './pages/borrowed-book-list/borrowed-book-list.component';
+import { ReturnedBookComponent } from './pages/returned-book/returned-book.component';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import { FormsModule } from '@angular/forms';
     RattingComponent,
     BookListComponent,
     ManageBookComponent,
+    BorrowedBookListComponent,
+    ReturnedBookComponent,
     
     
   ],
