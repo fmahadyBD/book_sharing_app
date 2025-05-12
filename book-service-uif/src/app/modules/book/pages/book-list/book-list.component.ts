@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService } from '../../../services/services';
 import { Router } from '@angular/router';
-import { BookResponse, PageResponseBookResponse } from '../../../services/models';
+import { PageResponseBookResponse } from '../../../../services/models/page-response-book-response';
+import { BookService } from '../../../../services/services/book.service';
+import { BookResponse } from '../../../../services/models/book-response';
+
 
 @Component({
   selector: 'app-book-list',
@@ -34,6 +36,7 @@ export class BookListComponent implements OnInit {
     })
       .subscribe({
         next: (books) => {
+          console.log("books",books);
           this.bookResponse = books;
           this.pages = Array(this.bookResponse.totalPages)
             .fill(0)

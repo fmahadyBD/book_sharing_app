@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BookResponse } from '../../../services/models';
+import { BookResponse } from '../../../../services/models/book-response';
+
 
 @Component({
   selector: 'app-book-card',

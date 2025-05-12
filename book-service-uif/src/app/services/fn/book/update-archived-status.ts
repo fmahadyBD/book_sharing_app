@@ -11,14 +11,12 @@ import { RequestBuilder } from '../../request-builder';
 
 export interface UpdateArchivedStatus$Params {
   'book-id': number;
-  archived: boolean;
 }
 
 export function updateArchivedStatus(http: HttpClient, rootUrl: string, params: UpdateArchivedStatus$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
   const rb = new RequestBuilder(rootUrl, updateArchivedStatus.PATH, 'patch');
   if (params) {
     rb.path('book-id', params['book-id'], {});
-    rb.query('archived', params.archived, {});
   }
 
   return http.request(

@@ -85,3 +85,7 @@ ng g interceptor http-token
 
 
     # Create the rating component. and make it
+
+
+
+    ## note: If I have a extra module I must to add that in main module
